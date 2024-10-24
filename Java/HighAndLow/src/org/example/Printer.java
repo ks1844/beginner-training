@@ -3,7 +3,7 @@ package org.example;
 import java.util.Scanner;
 
 public class Printer {
-	Scanner sc = new Scanner(System.in);
+	Scanner scanner = new Scanner(System.in);
 
 	public void printMessage(String message) {
 		System.out.println(message);
@@ -40,15 +40,21 @@ public class Printer {
 	}
 
 	public String inputHighORLow() {
-		System.out.print("High or Low?(h/l):");
-		String highLow = this.sc.nextLine().toLowerCase();
-		if (highLow.equals("h")) {
-			System.out.println("→highを選択しました。");
-		} else {
-			System.out.println("→lowを選択しました。");
-			highLow = "l";
+		String highLow = "";
+		while (true) {
+			System.out.print("High or Low?(h/l):");
+			highLow = this.scanner.nextLine().toLowerCase();
+			if (highLow.equals("h")) {
+				// 入力がh,Hのいずれかであれば次の処理に移る
+				System.out.println("→highを選択しました。");
+				return highLow;
+			} else if (highLow.equals("l")) {
+				System.out.println("→lowを選択しました。");
+				return highLow;
+			} else {
+				// 誤入力であれば再度入力を受ける
+			}
 		}
-		return highLow;
 	}
 
 	public void printCard(String leftCardMark, String rightCardMark) {
